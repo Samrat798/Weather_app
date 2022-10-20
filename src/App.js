@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import { fetchWeatherAction } from "./redux/slice/WeatherSlice";
+import Card from "./components/Card";
 var d2d = require("degrees-to-direction");
 
 function App() {
@@ -47,42 +48,19 @@ function App() {
           ) : error ? (
             <h1 className="text-error">{error?.message}</h1>
           ) : (
-            <div className="card-details_container">
-              <div className="card-details">
-                <img
-                  className="card-image"
-                  src={`https://openweathermap.org/img/wn/${weather?.weather[0].icon}@2x.png`}
-                  alt="Weather image"
-                />
-                <h1>{weather?.weather[0].main}</h1>{" "}
-              </div>
-              <h1 className="card-details_temparature">
-                {Math.floor(Number(weather?.main.temp - 273.15))}
-                <sup>°C</sup>
-              </h1>
-              <h3 className="card-details_place">
-                {weather?.name}, {weather?.sys?.country}
-              </h3>
-              <p className="card-details_description">
-                The weather condition in {weather?.name},{" "}
-                {weather?.sys?.country} is describe as:{" "}
-                {weather?.weather[0].description} with{" "}
-                {Math.floor(Number(weather?.main.temp - 273.15))}°C of
-                temperature and with {weather?.main?.humidity} % of humidity.
-              </p>
-              <h3>
-                <span className="card-details__max-temp">
-                  Max: {Math.floor(Number(weather?.main?.temp_max - 273.15))}°C
-                </span>{" "}
-                &nbsp;&nbsp;
-                <span className="card-min-temp">
-                  Max: {Math.floor(Number(weather?.main?.temp_min - 273.15))}°C
-                </span>
-              </h3>
-              <p className="card-container_wind">
-                Wind: {d2d(weather?.wind?.deg)} {weather?.wind?.speed}mi/h
-              </p>
-            </div>
+            <Card
+              image={`https://openweathermap.org/img/wn/${weather?.weather[0].icon}@2x.png`}
+              condition={weather?.weather[0].main}
+              temparature={Math.floor(Number(weather?.main.temp - 273.15))}
+              country={weather?.sys?.country}
+              city={weather?.name}
+              description={weather?.weather[0].description}
+              humidity={weather?.main?.humidity}
+              max={Math.floor(Number(weather?.main?.temp_max - 273.15))}
+              min={Math.floor(Number(weather?.main?.temp_min - 273.15))}
+              windDirection={d2d(weather?.wind?.deg)}
+              windSpeed={weather?.wind?.speed}
+            />
           )}
         </div>
       </section>

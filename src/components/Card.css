@@ -1,0 +1,33 @@
+.card-image {
+  height: 100px;
+  width: 100px;
+  background-color: #f9f9f9;
+  border-radius: 50%;
+}
+.card-details {
+  display: flex;
+  align-items: center;
+}
+.card-details > h1 {
+  margin-left: 20px;
+}
+.card-details_temparature {
+  font-size: 60px;
+  margin-bottom: 10px;
+}
+sup {
+  font-size: 30px;
+}
+.card-details_place {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+.card-details_description {
+  font-size: 18px;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.card-container_wind {
+  margin: 10px 0;
+}
